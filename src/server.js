@@ -5,19 +5,22 @@ import cors from 'cors';
 
 import config from './config';
 import connectToDB from './utils/db';
+import { signup, signin, protect } from './utils/auth';
 
-// defining the express app
 export const app = express();
 
-// enabling cors for all requests
-app.use(cors());
-
-// using bodyParser to parse JSON bodies into JS objects
-app.use(json());
+app.use(cors()); // enabling cors for all requests
+app.use(json()); // using bodyParser to parse JSON bodies into JS objects
 app.use(urlencoded({ extended: true }));
+app.use(morgan('dev')); // adding morgan to log HTTP requests
 
-// adding morgan to log HTTP requests
-app.use(morgan('dev'));
+// routes middleware
+app.post('/api/signup', signup);
+app.post('/api/signin', signin);
+
+app.get('/api/course', protect, (req, res) => {
+  res.status(200).send({ message: 'Success' });
+});
 
 app.get('/', (req, res) => {
   res.send({ message: 'hello fusemachine' });
