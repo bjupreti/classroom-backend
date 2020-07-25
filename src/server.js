@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import config from './config';
+import connectToDB from './utils/db';
 
 // defining the express app
 export const app = express();
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 export const start = async () => {
   try {
+    connectToDB();
     app.listen(config.port, () => {
       console.log(`REST API on http://localhost:${config.port}/api/v1`);
     });
