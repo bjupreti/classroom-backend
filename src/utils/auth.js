@@ -97,7 +97,10 @@ export const protect = async (req, res, next) => {
     return res.status(401).end();
   }
 
-  const user = User.findById(payload._id).select('-password').lean().exec();
+  const user = await User.findById(payload._id)
+    .select('-password')
+    .lean()
+    .exec();
 
   if (!user) {
     return res.status(401).end();

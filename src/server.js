@@ -6,6 +6,7 @@ import cors from 'cors';
 import config from './config';
 import connectToDB from './utils/db';
 import { signup, signin, protect } from './utils/auth';
+import courseRouter from './resources/course/course.router';
 
 export const app = express();
 
@@ -18,9 +19,7 @@ app.use(morgan('dev')); // adding morgan to log HTTP requests
 app.post('/api/signup', signup);
 app.post('/api/signin', signin);
 
-app.get('/api/course', protect, (req, res) => {
-  res.status(200).send({ message: 'Success' });
-});
+app.use('/api/course', protect, courseRouter);
 
 app.get('/', (req, res) => {
   res.send({ message: 'hello fusemachine' });
