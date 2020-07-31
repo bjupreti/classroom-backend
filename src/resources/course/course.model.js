@@ -1,5 +1,32 @@
 import mongoose from 'mongoose';
 
+const fileSchema = new mongoose.Schema(
+  {
+    fileName: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    originalName: {
+      type: String,
+      required: true
+    },
+    size: {
+      type: Number,
+      required: true
+    },
+    mimeType: {
+      required: true,
+      type: String
+    },
+    path: {
+      type: String,
+      required: true
+    }
+  },
+  { timestamps: true }
+);
+
 const courseSchema = new mongoose.Schema(
   {
     courseName: {
@@ -25,9 +52,10 @@ const courseSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: 'user',
+      ref: 'User',
       required: true
     },
+    files: [fileSchema],
     startDate: {
       type: Date,
       min: new Date()
@@ -36,4 +64,4 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Course = mongoose.model('course', courseSchema);
+export const Course = mongoose.model('Course', courseSchema);
