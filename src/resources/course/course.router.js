@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import controllers from './course.controller';
+import upload from '../../utils/upload';
 
 const router = Router();
 
@@ -12,5 +13,11 @@ router
   .get(controllers.getOne)
   .put(controllers.updateOne)
   .delete(controllers.removeOne);
+
+// api/course/:courseId/file/
+router.post('/:courseId/file/', upload, controllers.uploadFile);
+
+// api/course/:courseId/file/:id
+router.delete('/:courseId/file/:id', upload, controllers.removeFile);
 
 export default router;

@@ -14,6 +14,7 @@ app.use(cors()); // enabling cors for all requests
 app.use(json()); // using bodyParser to parse JSON bodies into JS objects
 app.use(urlencoded({ extended: true }));
 app.use(morgan('dev')); // adding morgan to log HTTP requests
+app.use(express.static('public')); // serving static files
 
 // routes middleware
 app.post('/api/signup', signup);

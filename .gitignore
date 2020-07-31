@@ -2,6 +2,7 @@ node_modules/
 .cache/
 .env
 dist/
+public/
 .DS_Store
 coverage/
 .vscode/
