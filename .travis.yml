@@ -12,3 +12,6 @@ deploy:
     master: $heroku_token
   app: 
     master: backend-classroom
+  skip_cleanup: true
+  run:
+    - npm start
