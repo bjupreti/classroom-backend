@@ -1,1 +1,3 @@
-console.log('hello fusemachine');
+import { start } from './server';
+
+start();

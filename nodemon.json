@@ -5,6 +5,7 @@
     ".eslintrc",
     ".babelrc",
     ".prettierrc",
+    ".env",
     "src/"
   ],
   "verbose": true,
