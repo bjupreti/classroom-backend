@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - 12
 branches:
   only:
     - master
@@ -13,5 +13,3 @@ deploy:
   app: 
     master: backend-classroom
   skip_cleanup: true
-  run:
-    - npm start
