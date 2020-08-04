@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "stable"
+branches:
+  only:
+    - master
+script:
+  - npm run build
+deploy:
+  provider: heroku
+  api_key:
+    master: $heroku_token
+  app: 
+    master: backend-classroom
