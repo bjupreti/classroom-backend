@@ -18,6 +18,6 @@ router
 router.post('/:courseId/file/', upload, controllers.uploadFile);
 
 // api/course/:courseId/file/:id
-router.delete('/:courseId/file/:id', upload, controllers.removeFile);
+router.delete('/:courseId/file/:id', controllers.removeFile);
 
 export default router;
