@@ -88,10 +88,26 @@ const removeFile = async (req, res) => {
   }
 };
 
+const downloadFile = async (req, res) => {
+  const { id, courseId } = req.params;
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) return res.status(404).send({ message: 'Course not found.' });
+
+    const file = await course.files.id(id);
+    if (!file) return res.status(404).send({ message: 'File not found.' });
+
+    res.download(`public${file.path}`);
+  } catch (e) {
+    catchError(e, res);
+  }
+};
+
 export default {
   ...crudControllers(Course, courseValidation),
   getOne,
   getMany,
   uploadFile,
-  removeFile
+  removeFile,
+  downloadFile
 };

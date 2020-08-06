@@ -7,6 +7,7 @@ import config from './config';
 import connectToDB from './utils/db';
 import { signup, signin, protect } from './utils/auth';
 import courseRouter from './resources/course/course.router';
+import courseController from './resources/course/course.controller';
 
 export const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.static('public')); // serving static files
 // routes middleware
 app.post('/api/signup', signup);
 app.post('/api/signin', signin);
+
+// api/course/:courseId/file/:id
+app.get('/api/course/:courseId/file/:id', courseController.downloadFile);
 
 app.use('/api/course', protect, courseRouter);
 
