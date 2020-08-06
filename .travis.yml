@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 12
+branches:
+  only:
+    - master
+script:
+  - npm run build
+deploy:
+  provider: heroku
+  api_key:
+    master: $heroku_token
+  app: 
+    master: backend-classroom
+  skip_cleanup: true
